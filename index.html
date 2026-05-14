@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,10 +9,19 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-    
-    body { font-family: 'Inter', system-ui, sans-serif; }
-    .hero-bg { background: linear-gradient(135deg, #0f172a 0%, #1e2937 100%); }
-    .section-title { position: relative; }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+    }
+
+    .hero-bg {
+      background: linear-gradient(135deg, #0f172a 0%, #1e2937 100%);
+    }
+
+    .section-title {
+      position: relative;
+    }
+
     .section-title:after {
       content: '';
       position: absolute;
@@ -21,30 +31,39 @@
       bottom: -8px;
       left: 0;
     }
+
     .profile-img {
       width: 280px;
       height: 280px;
       object-fit: cover;
-      border: 6px solid rgba(255,255,255,0.25);
+      border: 6px solid rgba(255, 255, 255, 0.25);
       box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.4);
     }
+
     .fade-in {
       opacity: 0;
       transform: translateY(20px);
       transition: all 0.7s ease-out;
     }
+
     .fade-in.visible {
       opacity: 1;
       transform: translateY(0);
     }
 
     @media print {
-      .no-print { display: none !important; }
-      .opacity-75 { opacity: 1 !important; }
-      body { background: white; color: black; }
+      .no-print {
+        display: none !important;
+      }
+
+      body {
+        background: white;
+        color: black;
+      }
     }
   </style>
 </head>
+
 <body class="bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-200">
 
   <!-- Navbar -->
@@ -52,26 +71,40 @@
     <div class="max-w-5xl mx-auto px-6 py-4">
       <div class="flex justify-between items-center">
         <h1 class="text-2xl font-bold text-blue-600">Maksim Smolnikau</h1>
-        
-        <div class="hidden md:flex space-x-8 text-sm font-medium">
-          <a href="#about" class="hover:text-blue-600 transition">About</a>
-          <a href="#experience" class="hover:text-blue-600 transition">Experience</a>
-          <a href="#projects" class="hover:text-blue-600 transition">Projects</a>
-          <a href="#skills" class="hover:text-blue-600 transition">Skills</a>
-          <a href="#education" class="hover:text-blue-600 transition">Education</a>
+
+        <div class="hidden md:flex items-center space-x-8 text-sm font-medium">
+          <a href="#about" class="hover:text-blue-600 transition nav-link" data-en="About" data-ru="Обо мне">About</a>
+          <a href="#experience" class="hover:text-blue-600 transition nav-link" data-en="Experience"
+            data-ru="Опыт">Experience</a>
+          <a href="#projects" class="hover:text-blue-600 transition nav-link" data-en="Projects"
+            data-ru="Проекты">Projects</a>
+          <a href="#skills" class="hover:text-blue-600 transition nav-link" data-en="Skills" data-ru="Навыки">Skills</a>
+          <a href="#education" class="hover:text-blue-600 transition nav-link" data-en="Education"
+            data-ru="Образование">Education</a>
+
+          <div
+            class="flex border border-slate-300 dark:border-slate-700 rounded-2xl overflow-hidden no-print text-sm font-medium">
+            <button onclick="switchLanguage('en')" id="btn-en" class="px-4 py-1.5 transition">EN</button>
+            <button onclick="switchLanguage('ru')" id="btn-ru" class="px-4 py-1.5 transition">RU</button>
+          </div>
+
+          <div class="flex items-center gap-4">
+            <a href="https://www.linkedin.com/in/maksim-smolnikau-0171631aa/" target="_blank"
+              class="text-blue-600 hover:text-blue-700 no-print">
+              <i class="fab fa-linkedin text-2xl"></i>
+            </a>
+            <a href="https://github.com/Mattaru" target="_blank"
+              class="text-slate-600 hover:text-black dark:hover:text-white no-print">
+              <i class="fab fa-github text-2xl"></i>
+            </a>
+            <button onclick="window.print()"
+              class="px-5 py-2 bg-blue-600 text-white rounded-2xl text-sm font-semibold hover:bg-blue-700 transition no-print">
+              <i class="fas fa-download mr-2"></i> PDF
+            </button>
+          </div>
         </div>
 
         <div class="flex items-center gap-4">
-          <a href="https://www.linkedin.com/in/maksim-smolnikau-0171631aa/" target="_blank" class="text-blue-600 hover:text-blue-700 no-print">
-            <i class="fab fa-linkedin text-2xl"></i>
-          </a>
-          <a href="https://github.com/Mattaru" target="_blank" class="text-slate-600 hover:text-black dark:hover:text-white no-print" title="GitHub">
-            <i class="fab fa-github text-2xl"></i>
-          </a>
-          <button onclick="window.print()" class="px-5 py-2 bg-blue-600 text-white rounded-2xl text-sm font-semibold hover:bg-blue-700 transition no-print">
-            <i class="fas fa-download mr-2"></i> PDF
-          </button>
-
           <button id="mobile-menu-btn" class="md:hidden p-2 text-2xl no-print">
             <i class="fas fa-bars"></i>
           </button>
@@ -81,11 +114,28 @@
       <!-- Mobile Menu -->
       <div id="mobile-menu" class="hidden md:hidden mt-4 pt-4 border-t dark:border-slate-700">
         <div class="flex flex-col space-y-4 text-sm font-medium">
-          <a href="#about" class="hover:text-blue-600 transition">About</a>
-          <a href="#experience" class="hover:text-blue-600 transition">Experience</a>
-          <a href="#projects" class="hover:text-blue-600 transition">Projects</a>
-          <a href="#skills" class="hover:text-blue-600 transition">Skills</a>
-          <a href="#education" class="hover:text-blue-600 transition">Education</a>
+          <a href="#about" class="hover:text-blue-600 transition" data-en="About" data-ru="Обо мне">About</a>
+          <a href="#experience" class="hover:text-blue-600 transition" data-en="Experience"
+            data-ru="Опыт">Experience</a>
+          <a href="#projects" class="hover:text-blue-600 transition" data-en="Projects" data-ru="Проекты">Projects</a>
+          <a href="#skills" class="hover:text-blue-600 transition" data-en="Skills" data-ru="Навыки">Skills</a>
+          <a href="#education" class="hover:text-blue-600 transition" data-en="Education"
+            data-ru="Образование">Education</a>
+
+          <div class="flex items-center gap-4">
+            <a href="https://www.linkedin.com/in/maksim-smolnikau-0171631aa/" target="_blank"
+              class="text-blue-600 hover:text-blue-700 no-print">
+              <i class="fab fa-linkedin text-2xl"></i>
+            </a>
+            <a href="https://github.com/Mattaru" target="_blank"
+              class="text-slate-600 hover:text-black dark:hover:text-white no-print">
+              <i class="fab fa-github text-2xl"></i>
+            </a>
+            <button onclick="window.print()"
+              class="px-5 py-2 bg-blue-600 text-white rounded-2xl text-sm font-semibold hover:bg-blue-700 transition no-print">
+              <i class="fas fa-download mr-2"></i> PDF
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -96,14 +146,19 @@
     <div class="max-w-5xl mx-auto px-6">
       <div class="grid md:grid-cols-2 gap-12 items-center">
         <div class="text-center md:text-left">
-          <h2 class="text-5xl font-bold leading-tight mb-4">Full Stack Software Developer</h2>
-          <p class="text-xl text-slate-300 mb-8">
-            Passionate about building scalable web applications with modern technologies. 
+          <h2 id="hero-title" class="text-5xl font-bold leading-tight mb-4">Full Stack Software Developer</h2>
+          <p id="hero-subtitle" class="text-xl text-slate-300 mb-8">
+            Passionate about building scalable web applications with modern technologies.
             Focused on clean code, performance, and delivering excellent user experiences.
           </p>
           <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-            <a href="#contact" class="px-8 py-3 bg-white text-slate-900 rounded-2xl font-semibold hover:bg-slate-100 transition">Get In Touch</a>
-            <a href="https://latausplatta.net" target="_blank" class="px-8 py-3 border border-white rounded-2xl font-semibold hover:bg-white/10 transition">View Latest Project →</a>
+            <a href="#contact"
+              class="px-8 py-3 bg-white text-slate-900 rounded-2xl font-semibold hover:bg-slate-100 transition"
+              data-en="Get In Touch" data-ru="Связаться">Get In Touch</a>
+            <a href="https://latausplatta.net" target="_blank"
+              class="px-8 py-3 border border-white rounded-2xl font-semibold hover:bg-white/10 transition"
+              data-en="View Latest Project" data-ru="Последний проект">View Latest
+              Project →</a>
           </div>
         </div>
 
@@ -118,19 +173,15 @@
 
     <!-- About -->
     <section id="about" class="fade-in">
-      <h2 class="section-title text-3xl font-semibold mb-6">About Me</h2>
-      <p class="text-lg leading-relaxed max-w-3xl">
-        Full Stack Developer with practical experience in building complete web solutions — from frontend to backend and databases. 
-        After relocating to Finland, I completed professional training in Full Stack Development and launched real-world projects, 
-        including <strong>latausplatta.net</strong>. I am a fast learner with strong problem-solving skills.
-      </p>
+      <h2 class="section-title text-3xl font-semibold mb-6" data-en="About Me" data-ru="Обо мне">About Me</h2>
+      <p id="about-text" class="text-lg leading-relaxed max-w-3xl"></p>
     </section>
 
     <!-- Experience -->
     <section id="experience" class="fade-in">
-      <h2 class="section-title text-3xl font-semibold mb-8">Experience</h2>
+      <h2 class="section-title text-3xl font-semibold mb-8" data-en="Experience" data-ru="Опыт работы">Experience</h2>
       <div class="space-y-12">
-        <!-- Experience entries -->
+
         <div class="grid md:grid-cols-12 gap-6">
           <div class="md:col-span-4">
             <p class="font-medium text-slate-500">Aug 2025 – Dec 2025</p>
@@ -138,7 +189,7 @@
             <p class="text-blue-600">Lattori Oy (Contract) • Remote</p>
           </div>
           <div class="md:col-span-8">
-            <p class="text-slate-700 dark:text-slate-300">Developing full-stack features and maintaining web applications.</p>
+            <p id="exp1" class="text-slate-700 dark:text-slate-300"></p>
           </div>
         </div>
 
@@ -149,9 +200,7 @@
             <p class="text-blue-600">Freelance • Remote</p>
           </div>
           <div class="md:col-span-8">
-            <p class="text-slate-700 dark:text-slate-300">
-              Developed and launched personal and client web projects.
-            </p>
+            <p id="exp2" class="text-slate-700 dark:text-slate-300"></p>
           </div>
         </div>
 
@@ -162,11 +211,11 @@
             <p class="text-blue-600">Nar_Mattaru • Remote</p>
           </div>
           <div class="md:col-span-8">
-            <p class="text-slate-700 dark:text-slate-300">Organizing and conducting video broadcasts, working with audiences, advertisers and sponsors.</p>
+            <p id="exp3" class="text-slate-700 dark:text-slate-300"></p>
           </div>
         </div>
 
-        <!-- Roles -->
+        <!-- Older positions -->
         <div class="grid md:grid-cols-12 gap-6 opacity-75">
           <div class="md:col-span-4">
             <p class="font-medium text-slate-500">Apr 2013 – Sep 2017</p>
@@ -174,7 +223,7 @@
             <p class="text-slate-500">Espoo, Finland</p>
           </div>
           <div class="md:col-span-8">
-            <p class="text-slate-600 dark:text-slate-400 text-sm">Settled in Finland, prepared documents, studied Finnish language courses, and completed working language practices.</p>
+            <p id="exp4" class="text-slate-600 dark:text-slate-400 text-sm"></p>
           </div>
         </div>
 
@@ -185,7 +234,7 @@
             <p class="text-slate-500">OJSC Tekona-M, Minsk, Belarus</p>
           </div>
           <div class="md:col-span-8">
-            <p class="text-slate-600 dark:text-slate-400 text-sm">Formation of applications for the production of hoses. Working with clients, preparation of price lists, and organization of warehouse premises.</p>
+            <p id="exp5" class="text-slate-600 dark:text-slate-400 text-sm"></p>
           </div>
         </div>
 
@@ -196,7 +245,7 @@
             <p class="text-slate-500">JSC "Borisov Plant of Automotive and Tractor Electrical Equipment", Belarus</p>
           </div>
           <div class="md:col-span-8">
-            <p class="text-slate-600 dark:text-slate-400 text-sm">Checking the quality of manufactured products. Identification and localization of defects.</p>
+            <p id="exp6" class="text-slate-600 dark:text-slate-400 text-sm"></p>
           </div>
         </div>
 
@@ -207,32 +256,33 @@
             <p class="text-slate-500">OJSC Borisov Plant "AVTOGYDROUSILITEL", Belarus</p>
           </div>
           <div class="md:col-span-8">
-            <p class="text-slate-600 dark:text-slate-400 text-sm">General machine operation in manufacturing environment.</p>
+            <p id="exp7" class="text-slate-600 dark:text-slate-400 text-sm"></p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Projects, Skills, Education, Contact sections -->
+    <!-- Projects -->
     <section id="projects" class="fade-in">
-      <h2 class="section-title text-3xl font-semibold mb-8">Latest Project</h2>
+      <h2 class="section-title text-3xl font-semibold mb-8" data-en="Latest Project" data-ru="Последний проект">Latest
+        Project</h2>
       <div class="grid md:grid-cols-2 gap-8">
         <div class="bg-white dark:bg-slate-900 p-8 rounded-3xl shadow-sm border border-slate-200 dark:border-slate-800">
           <h3 class="font-semibold text-xl mb-2">Latausplättä</h3>
           <p class="text-blue-600 mb-4">Full Stack Project • 2024–2025</p>
-          <p class="mb-6">
-            Web platform that helps Finnish housing companies (taloyhtiöt) plan, design, and tender EV charging solutions.
-          </p>
-          <a href="https://latausplatta.net" target="_blank" class="inline-flex items-center text-blue-600 hover:underline font-medium">
+          <p id="project-desc" class="mb-6"></p>
+          <a href="https://latausplatta.net" target="_blank"
+            class="inline-flex items-center text-blue-600 hover:underline font-medium">
             Visit Project <span class="ml-2">→</span>
           </a>
         </div>
       </div>
     </section>
 
-    <!-- Skills, Education, Contact sections -->
+    <!-- Skills -->
     <section id="skills" class="fade-in">
-      <h2 class="section-title text-3xl font-semibold mb-8">Technical Skills</h2>
+      <h2 class="section-title text-3xl font-semibold mb-8" data-en="Technical Skills" data-ru="Технические навыки">
+        Technical Skills</h2>
       <div class="grid grid-cols-2 md:grid-cols-4 gap-x-12 gap-y-10">
         <div>
           <h4 class="font-medium mb-4 text-blue-600">Frontend</h4>
@@ -272,8 +322,9 @@
       </div>
     </section>
 
+    <!-- Education -->
     <section id="education" class="fade-in">
-      <h2 class="section-title text-3xl font-semibold mb-8">Education</h2>
+      <h2 class="section-title text-3xl font-semibold mb-8" data-en="Education" data-ru="Образование">Education</h2>
       <div class="space-y-8">
         <div>
           <p class="font-semibold">Full Stack Software Developer</p>
@@ -290,9 +341,10 @@
       </div>
     </section>
 
+    <!-- Contact -->
     <section id="contact" class="fade-in bg-white dark:bg-slate-900 rounded-3xl p-10 text-center">
-      <h2 class="text-3xl font-semibold mb-6">Let's Connect</h2>
-      <p class="mb-8 text-lg">Open to full-time or contract opportunities in Full Stack Development.</p>
+      <h2 class="text-3xl font-semibold mb-6" data-en="Let's Connect" data-ru="Давайте свяжемся">Let's Connect</h2>
+      <p id="contact-text" class="mb-8 text-lg"></p>
       <div class="flex flex-col sm:flex-row gap-6 justify-center items-center">
         <a href="mailto:maksimsmolnikau@gmail.com" class="flex items-center gap-3 hover:text-blue-600 transition">
           <i class="fas fa-envelope text-2xl"></i>
@@ -306,8 +358,9 @@
     </section>
   </div>
 
-  <!-- Back to Top Button -->
-  <button id="back-to-top" class="fixed bottom-8 right-8 bg-blue-600 hover:bg-blue-700 text-white p-4 rounded-full shadow-lg transition hidden no-print">
+  <!-- Back to Top -->
+  <button id="back-to-top"
+    class="fixed bottom-8 right-8 bg-blue-600 hover:bg-blue-700 text-white p-4 rounded-full shadow-lg transition hidden no-print">
     <i class="fas fa-arrow-up"></i>
   </button>
 
@@ -316,43 +369,103 @@
   </footer>
 
   <script>
-    // Mobile Menu
-    document.getElementById('mobile-menu-btn').addEventListener('click', () => {
-      document.getElementById('mobile-menu').classList.toggle('hidden');
-    });
+    const translations = {
+      en: {
+        heroTitle: "Full Stack Software Developer",
+        heroSubtitle: "Passionate about building scalable web applications with modern technologies. Focused on clean code, performance, and delivering excellent user experiences.",
+        about: "Full Stack Developer with practical experience in building complete web solutions — from frontend to backend and databases. I am a fast learner with strong problem-solving skills.",
+        exp1: "Developing full-stack features and maintaining web applications.",
+        exp2: "Developed and launched personal and client web projects.",
+        exp3: "Organizing and conducting video broadcasts, working with audiences, advertisers and sponsors.",
+        exp4: "Settled in Finland, prepared documents, studied Finnish language courses, and completed working language practices.",
+        exp5: "Formation of applications for the production of hoses. Working with clients, preparation of price lists, and organization of warehouse premises.",
+        exp6: "Checking the quality of manufactured products. Identification and localization of defects.",
+        exp7: "General machine operation in manufacturing environment.",
+        projectDesc: "Web platform that helps Finnish housing companies (taloyhtiöt) plan, design, and tender EV charging solutions.",
+        contactText: "Open to full-time or contract opportunities in Full Stack Development."
+      },
+      ru: {
+        heroTitle: "Full Stack Разработчик",
+        heroSubtitle: "Страстно увлечён созданием масштабируемых веб-приложений с использованием современных технологий. Акцент на чистом коде, производительности и отличном пользовательском опыте.",
+        about: "Full Stack разработчик с практическим опытом создания полноценных веб-решений — от фронтенда до бэкенда и баз данных. Быстро обучаюсь, обладаю сильными навыками решения задач.",
+        exp1: "Разработка full-stack функционала и поддержка веб-приложений.",
+        exp2: "Разработка и запуск личных и клиентских веб-проектов.",
+        exp3: "Организация и проведение видеотрансляций, работа с аудиторией, рекламодателями и спонсорами.",
+        exp4: "Переезд в Финляндию, подготовка документов, изучение финского языка и прохождение языковой практики.",
+        exp5: "Формирование заявок на производство шлангов. Работа с клиентами, подготовка прайс-листов, организация складских помещений.",
+        exp6: "Проверка качества изготовленной продукции. Выявление и локализация дефектов.",
+        exp7: "Работа на универсальных станках в производственной среде.",
+        projectDesc: "Веб-платформа, которая помогает финским жилищным компаниям (taloyhtiöt) планировать, проектировать и проводить тендеры на решения для зарядки электромобилей.",
+        contactText: "Открыт для постоянной работы или контрактов в сфере Full Stack разработки."
+      }
+    };
 
-    // Smooth Scrolling for Navigation
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
-        if (this.getAttribute('href') !== '#') {
+    function switchLanguage(lang) {
+      document.documentElement.lang = lang;
+
+      // Style active button
+      document.getElementById('btn-en').classList.toggle('bg-blue-600', lang === 'en');
+      document.getElementById('btn-en').classList.toggle('text-white', lang === 'en');
+      document.getElementById('btn-ru').classList.toggle('bg-blue-600', lang === 'ru');
+      document.getElementById('btn-ru').classList.toggle('text-white', lang === 'ru');
+
+      // Update content
+      document.getElementById('hero-title').textContent = translations[lang].heroTitle;
+      document.getElementById('hero-subtitle').textContent = translations[lang].heroSubtitle;
+      document.getElementById('about-text').innerHTML = translations[lang].about;
+      document.getElementById('exp1').textContent = translations[lang].exp1;
+      document.getElementById('exp2').textContent = translations[lang].exp2;
+      document.getElementById('exp3').textContent = translations[lang].exp3;
+      document.getElementById('exp4').textContent = translations[lang].exp4;
+      document.getElementById('exp5').textContent = translations[lang].exp5;
+      document.getElementById('exp6').textContent = translations[lang].exp6;
+      document.getElementById('exp7').textContent = translations[lang].exp7;
+      document.getElementById('project-desc').textContent = translations[lang].projectDesc;
+      document.getElementById('contact-text').textContent = translations[lang].contactText;
+
+      // Update all elements with data-en / data-ru
+      document.querySelectorAll('[data-en]').forEach(el => {
+        el.textContent = el.getAttribute(`data-${lang}`);
+      });
+    }
+
+    function detectLanguage() {
+      const userLang = navigator.language || navigator.userLanguage || 'en';
+      return userLang.startsWith('ru') ? 'ru' : 'en';
+    }
+
+    window.onload = () => {
+      switchLanguage(detectLanguage());
+
+      // Mobile menu
+      document.getElementById('mobile-menu-btn').addEventListener('click', () => {
+        document.getElementById('mobile-menu').classList.toggle('hidden');
+      });
+
+      // Smooth scroll
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
           e.preventDefault();
           document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
-        }
+        });
       });
-    });
 
-    // Back to Top - FIXED
-    const backToTop = document.getElementById('back-to-top');
-    
-    backToTop.addEventListener('click', () => {
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
+      // Back to top
+      const backToTop = document.getElementById('back-to-top');
+      window.addEventListener('scroll', () => {
+        backToTop.classList.toggle('hidden', window.scrollY < 400);
       });
-    });
+      backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
-    window.addEventListener('scroll', () => {
-      backToTop.classList.toggle('hidden', window.scrollY < 400);
-    });
-
-    // Fade-in Animation
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) entry.target.classList.add('visible');
-      });
-    }, { threshold: 0.1 });
-
-    document.querySelectorAll('.fade-in').forEach(section => observer.observe(section));
+      // Fade-in
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) entry.target.classList.add('visible');
+        });
+      }, { threshold: 0.1 });
+      document.querySelectorAll('.fade-in').forEach(section => observer.observe(section));
+    };
   </script>
 </body>
+
 </html>

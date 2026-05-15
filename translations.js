@@ -32,25 +32,42 @@ const translations = {
 function switchLanguage(lang) {
   document.documentElement.lang = lang;
 
-  // Style active button
-  document.getElementById('btn-en').classList.toggle('bg-blue-600', lang === 'en');
-  document.getElementById('btn-en').classList.toggle('text-white', lang === 'en');
-  document.getElementById('btn-ru').classList.toggle('bg-blue-600', lang === 'ru');
-  document.getElementById('btn-ru').classList.toggle('text-white', lang === 'ru');
+  // Style active buttons
+  ['btn-en', 'btn-ru'].forEach(btnId => {
+    const isActive = (btnId === 'btn-en' && lang === 'en') || (btnId === 'btn-ru' && lang === 'ru');
+    const btn = document.getElementById(btnId);
+    btn.classList.toggle('bg-blue-600', isActive);
+    btn.classList.toggle('text-white', isActive);
+  });
 
-  // Update content
-  document.getElementById('hero-title').textContent = translations[lang].heroTitle;
-  document.getElementById('hero-subtitle').textContent = translations[lang].heroSubtitle;
-  document.getElementById('about-text').innerHTML = translations[lang].about;
-  document.getElementById('exp1').textContent = translations[lang].exp1;
-  document.getElementById('exp2').textContent = translations[lang].exp2;
-  document.getElementById('exp3').textContent = translations[lang].exp3;
-  document.getElementById('exp4').textContent = translations[lang].exp4;
-  document.getElementById('exp5').textContent = translations[lang].exp5;
-  document.getElementById('exp6').textContent = translations[lang].exp6;
-  document.getElementById('exp7').textContent = translations[lang].exp7;
-  document.getElementById('project-desc').textContent = translations[lang].projectDesc;
-  document.getElementById('contact-text').textContent = translations[lang].contactText;
+  // Map of element IDs to translation keys
+  const elementUpdates = {
+    'hero-title': 'heroTitle',
+    'hero-subtitle': 'heroSubtitle',
+    'about-text': 'about',
+    'exp1': 'exp1',
+    'exp2': 'exp2',
+    'exp3': 'exp3',
+    'exp4': 'exp4',
+    'exp5': 'exp5',
+    'exp6': 'exp6',
+    'exp7': 'exp7',
+    'project-desc': 'projectDesc',
+    'contact-text': 'contactText'
+  };
+
+  // Update content from mapping
+  Object.entries(elementUpdates).forEach(([elementId, translationKey]) => {
+    const el = document.getElementById(elementId);
+    if (el) {
+      const isHtml = elementId === 'about-text';
+      if (isHtml) {
+        el.innerHTML = translations[lang][translationKey];
+      } else {
+        el.textContent = translations[lang][translationKey];
+      }
+    }
+  });
 
   // Update all elements with data-en / data-ru
   document.querySelectorAll('[data-en]').forEach(el => {
@@ -61,4 +78,4 @@ function switchLanguage(lang) {
 function detectLanguage() {
   const userLang = navigator.language || navigator.userLanguage || 'en';
   return userLang.startsWith('ru') ? 'ru' : 'en';
-}
+};

@@ -15,7 +15,7 @@ const translations = {
   },
   ru: {
     heroTitle: "Full Stack Разработчик",
-    heroSubtitle: "Страстно увлечён созданием масштабируемых веб-приложений с использованием современных технологий. Акцент на чистом коде, производительности и отличном пользовательском опыте.",
+    heroSubtitle: "Увлечён созданием масштабируемых веб-приложений с использованием современных технологий. Акцент на чистом коде, производительности и отличном пользовательском опыте.",
     about: "Full Stack разработчик с практическим опытом создания полноценных веб-решений — от фронтенда до бэкенда и баз данных. Быстро обучаюсь, обладаю сильными навыками решения задач.",
     exp1: "Разработка full-stack функционала и поддержка веб-приложений.",
     exp2: "Разработка и запуск частных клиентских веб-проектов. Фриланс.",
@@ -32,13 +32,21 @@ const translations = {
 function switchLanguage(lang) {
   document.documentElement.lang = lang;
 
-  // Style active buttons
-  ['btn-en', 'btn-ru'].forEach(btnId => {
-    const isActive = (btnId === 'btn-en' && lang === 'en') || (btnId === 'btn-ru' && lang === 'ru');
-    const btn = document.getElementById(btnId);
-    btn.classList.toggle('bg-blue-600', isActive);
-    btn.classList.toggle('text-white', isActive);
-  });
+  // Update toggle state
+  const enLink = document.getElementById('lang-en');
+  const ruLink = document.getElementById('lang-ru');
+  
+  if (lang === 'ru') {
+    enLink.classList.remove('active');
+    enLink.classList.add('inactive');
+    ruLink.classList.remove('inactive');
+    ruLink.classList.add('active');
+  } else {
+    enLink.classList.remove('inactive');
+    enLink.classList.add('active');
+    ruLink.classList.remove('active');
+    ruLink.classList.add('inactive');
+  }
 
   // Map of element IDs to translation keys
   const elementUpdates = {
@@ -73,6 +81,12 @@ function switchLanguage(lang) {
   document.querySelectorAll('[data-en]').forEach(el => {
     el.textContent = el.getAttribute(`data-${lang}`);
   });
+
+  // Close mobile menu after language switch
+  const mobileMenu = document.getElementById('mobile-menu');
+  if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+    mobileMenu.classList.add('hidden');
+  }
 }
 
 function detectLanguage() {
